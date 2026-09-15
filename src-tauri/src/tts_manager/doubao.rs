@@ -1043,7 +1043,24 @@ fn pop_next_json_object(buffer: &mut String) -> Option<String> {
 
 #[cfg(test)]
 mod tests {
-    use super::{decode_tts_stream_message, pop_next_json_object};
+    use super::{
+        decode_tts_stream_message, default_models, pop_next_json_object, resolve_resource_id,
+    };
+
+    #[test]
+    fn exposes_tts_1_model() {
+        assert!(default_models()
+            .iter()
+            .any(|model| model.id == "seed-tts-1.0"));
+    }
+
+    #[test]
+    fn keeps_configured_tts_1_resource_id() {
+        assert_eq!(
+            resolve_resource_id(Some("seed-tts-1.0"), "seed-tts-2.0"),
+            "seed-tts-1.0"
+        );
+    }
 
     #[test]
     fn decodes_audio_and_usage_messages_separately() {

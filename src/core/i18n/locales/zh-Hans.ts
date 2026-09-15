@@ -3966,6 +3966,7 @@ export const zhHansMessages: DeepPartialMessageTree<LocaleMessages> = {
       doubaoOpenApiHint: "用于刷新豆包音色列表。语音复刻模式会查询下方项目名称中的音色。",
       doubaoRequestPathHint: "可选的合成路径覆盖。留空时使用官方默认路径。",
       doubaoVoiceModels: {
+        tts1: "语音合成1.0",
         tts2: "语音合成2.0",
         icl2: "语音复刻2.0",
       },

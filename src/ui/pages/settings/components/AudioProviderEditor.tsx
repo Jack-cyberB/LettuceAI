@@ -412,6 +412,9 @@ export function AudioProviderEditor({
                 }}
                 className="w-full rounded-lg border border-fg/10 bg-surface-el/20 px-3 py-2 text-sm text-fg focus:border-fg/30 focus:outline-none"
               >
+                <option value="seed-tts-1.0" className="bg-surface-el">
+                  {t("providers.audioEditor.doubaoVoiceModels.tts1")}
+                </option>
                 <option value="seed-tts-2.0" className="bg-surface-el">
                   {t("providers.audioEditor.doubaoVoiceModels.tts2")}
                 </option>

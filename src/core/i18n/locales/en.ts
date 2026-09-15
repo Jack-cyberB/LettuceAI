@@ -4075,6 +4075,7 @@ export const enMessages = {
       doubaoRequestPathHint:
         "Optional synthesis path override. Leave blank for the official default.",
       doubaoVoiceModels: {
+        tts1: "Speech synthesis 1.0",
         tts2: "Speech synthesis 2.0",
         icl2: "Voice clone 2.0",
       },
