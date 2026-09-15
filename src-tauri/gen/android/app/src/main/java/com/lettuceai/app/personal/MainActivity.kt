@@ -1,4 +1,4 @@
-package com.lettuceai.app
+package com.lettuceai.app.personal
 
 import android.content.Intent
 import android.graphics.Color

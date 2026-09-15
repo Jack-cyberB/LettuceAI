@@ -14,14 +14,14 @@
 
     <application
         android:icon="@mipmap/ic_launcher"
-        android:label="菜包"
+        android:label="菜包（个人版）"
         android:theme="@style/Theme.lettuceai"
         android:usesCleartextTraffic="${usesCleartextTraffic}"
         android:requestLegacyExternalStorage="true">
         <activity
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
             android:launchMode="singleTask"
-            android:label="菜包"
+            android:label="菜包（个人版）"
             android:name="__PACKAGE__.MainActivity"
             android:windowSoftInputMode="adjustNothing|stateHidden"
             android:exported="true">

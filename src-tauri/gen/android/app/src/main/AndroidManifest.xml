@@ -14,15 +14,15 @@
 
     <application
         android:icon="@mipmap/ic_launcher"
-        android:label="菜包"
+        android:label="菜包（个人版）"
         android:theme="@style/Theme.lettuceai"
         android:usesCleartextTraffic="${usesCleartextTraffic}"
         android:requestLegacyExternalStorage="true">
         <activity
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
             android:launchMode="singleTask"
-            android:label="菜包"
-            android:name="com.lettuceai.app.MainActivity"
+            android:label="菜包（个人版）"
+            android:name="com.lettuceai.app.personal.MainActivity"
             android:windowSoftInputMode="adjustNothing|stateHidden"
             android:exported="true">
             <intent-filter>
@@ -34,7 +34,7 @@
         </activity>
 
         <service
-            android:name="com.lettuceai.app.CrashMonitorService"
+            android:name="com.lettuceai.app.personal.CrashMonitorService"
             android:enabled="true"
             android:exported="false"
             android:process=":monitor"
