@@ -140,7 +140,8 @@ async function main() {
   }
 
   await runCommand("node", ["scripts/apply-android-overrides.mjs"], env);
-  await runCommand("tauri", ["android", mode, ...process.argv.slice(3)], env);
+  const tauriCli = path.join(repoRoot, "node_modules", "@tauri-apps", "cli", "tauri.js");
+  await runCommand(process.execPath, [tauriCli, "android", mode, ...process.argv.slice(3)], env);
 }
 
 main().catch((error) => {

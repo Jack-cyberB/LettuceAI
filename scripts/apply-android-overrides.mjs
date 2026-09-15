@@ -15,6 +15,14 @@ const proguardRulesPath = path.join(androidAppDir, "proguard-rules.pro");
 const buildGradlePath = path.join(androidAppDir, "build.gradle.kts");
 const sherpaVersion = "1.13.4";
 const sherpaAarName = `sherpa-onnx-${sherpaVersion}.aar`;
+const whisperSysBuildPath = path.join(
+  repoRoot,
+  "src-tauri",
+  "crates",
+  "whisper-rs",
+  "sys",
+  "build.rs",
+);
 
 async function main() {
   const packageName = await readBasePackageName(tauriConfigPath);
@@ -31,6 +39,7 @@ async function main() {
     "ZipformerCtcBridge.kt",
   ]);
   await ensureSherpaAndroidRuntime();
+  await fixWhisperAndroidCrossCompile();
 
   await applyTemplate("MainActivity.kt.template", path.join(targetJavaDir, "MainActivity.kt"), {
     __PACKAGE__: packageName,
@@ -91,6 +100,21 @@ async function main() {
   console.log(
     `Applied Android overrides for package ${packageName} (applicationId override via LETTUCE_ANDROID_APPLICATION_ID)`,
   );
+}
+
+async function fixWhisperAndroidCrossCompile() {
+  if (!(await pathExists(whisperSysBuildPath))) return;
+
+  const windowsHostCheck = 'if cfg!(target_os = "windows") {';
+  const windowsTargetCheck = 'if target.contains("windows") {';
+  const content = await readFile(whisperSysBuildPath, "utf8");
+
+  if (content.includes(windowsTargetCheck)) return;
+  if (!content.includes(windowsHostCheck)) {
+    throw new Error(`Could not locate the Whisper Windows target check in ${whisperSysBuildPath}`);
+  }
+
+  await writeFile(whisperSysBuildPath, content.replace(windowsHostCheck, windowsTargetCheck));
 }
 
 async function ensureSherpaAndroidRuntime() {
